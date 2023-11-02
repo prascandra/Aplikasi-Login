@@ -10,9 +10,9 @@ if (isset($_SESSION['nama'])) {
 
 if (isset($_POST['submit'])) {
     $username = mysqli_real_escape_string($conn, $_POST['username']);
-    $password = mysqli_real_escape_string($conn, $_POST['password']);
+    $password = hash('sha256', $_POST['password']);
 
-    $query = "SELECT * FROM user WHERE username = '$username' AND password='$password'";
+    $query = "SELECT * FROM user WHERE username = '$username' AND passsword='$password'";
     // echo $query;
     $result = mysqli_query($conn, $query);
 
